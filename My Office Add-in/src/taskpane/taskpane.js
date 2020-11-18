@@ -11,6 +11,7 @@ import "../../assets/icon-80.png";
 
 var officegen = require('officegen')
 var pptx = officegen('pptx')
+var slide
 //var async1 = require('async')
 
 Office.onReady(info => {
@@ -18,6 +19,39 @@ Office.onReady(info => {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
+    var chartsData = [
+ 
+      {
+        title: 'My production',
+        renderType: 'pie',
+        data: [
+          {
+            name: 'Oil',
+            labels: [
+              'Czech Republic',
+              'Ireland',
+              'Germany',
+              'Australia',
+              'Austria',
+              'UK',
+              'Belgium'
+            ],
+            values: [301, 201, 165, 139, 128, 99, 60],
+            colors: [
+              'ff0000',
+              '00ff00',
+              '0000ff',
+              'ffff00',
+              'ff00ff',
+              '00ffff',
+              '000000'
+            ]
+          }
+        ]
+      }
+    ]
+    slide = pptx.makeNewSlide()
+    pptx.addChart(chartsData)
   }
 });
 
@@ -27,7 +61,7 @@ export async function run() {
   /**
    * Insert your PowerPoint code here
    */
-  var chartsData = [
+/*  var chartsData = [
  
     {
       title: 'My production',
@@ -59,7 +93,7 @@ export async function run() {
     }
   ]
   slide = pptx.makeNewSlide()
-  pptx.addChart(chartsData)
+  pptx.addChart(chartsData)*/
  /* function generateCharts(callback) {
     async1.each(chartsData, generateOneChart, callback)
   }
